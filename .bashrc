@@ -184,10 +184,10 @@ unset command_not_found_handle
 #if [[ "${COLORTERM}" == "gnome-terminal" && "${TERM}" != "xterm"  ]]; then
 #    export TERM="gnome-256color"
 #fi
+
+#Unity dev functions
 . ~/.bash_functions
-alias valgrind-unity='G_SLICE=always-malloc G_DEBUG=gc-friendly valgrind --tool=memcheck --num-callers=50 --leak-check=full --track-origins=yes --log-file=unity-valgrind.`date +%Y%m%dT%H%M%S`.txt compiz --replace 2>&1 | tee /home/leecj2/unity-valgrind.`date +%Y%m%dT%H%M%S`.log'
-alias sa="adb wait-for-device; adb root; adb wait-for-device; adb shell"
-alias sd="adb forward tcp:2222 tcp:22; ssh-keygen -f /home/leecj2/.ssh/known_hosts -R [localhost]:2222; ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no phablet@localhost -p 2222"
+
 PATH=$PATH:/usr/local/bin
 
 DEBFULLNAME="Christopher Lee"

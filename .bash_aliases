@@ -9,6 +9,7 @@ alias lsl="ls -larth"
 alias ag=ack-grep
 alias gr='grep -rn'
 
+# Bzr abbrevs.
 alias bbranch='bzr branch'
 alias bst='bzr status'
 alias bpull='bzr pull'
@@ -17,8 +18,6 @@ alias bdiff='bzr cdiff'
 alias ust-push='function _ust-push(){ bzr push lp:~canonical-platform-qa/ubuntu-sanity-tests/$1; };_ust-push'
 
 alias ipy3="ipython3"
-
-alias pshell="phablet-shell"
 
 # Helper functions to get emacs running if it needs to be.
 function _ensure_emacs_running() {
@@ -38,7 +37,12 @@ alias ec='function _ec() { emacsclient -c "$1" & }; _ensure_emacs_running; _ec'
 
 # Phablet actions
 function _current_running_revno() {
-  echo $(adb shell system-image-cli -i | grep "current build number"| sed -e "s/.*:\ //")
+  echo $(adb shell system-image-cli -i | grep "current build number"| sed -e "s/.*:\ //" | tr -d '\r')
 }
 
-alias reflash_dev='echo _current_running_revno'
+
+alias reflash_dev='function _f(){ ubuntu-device-flash --developer-mode --password 0000 --channel="ubuntu-touch/devel-proposed" --wipe --revision=$(_current_running_revno); }; _f'
+alias pshell="phablet-shell"
+
+alias sa="adb wait-for-device; adb root; adb wait-for-device; adb shell"
+alias sd="adb forward tcp:2222 tcp:22; ssh-keygen -f /home/leecj2/.ssh/known_hosts -R [localhost]:2222; ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no phablet@localhost -p 2222"

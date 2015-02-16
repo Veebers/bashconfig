@@ -34,3 +34,6 @@ function use-local-compiz
   export DISPLAY=:0
   export COMPIZ_CONFIG_PROFILE=ubuntu
 }
+
+
+alias valgrind-unity='G_SLICE=always-malloc G_DEBUG=gc-friendly valgrind --tool=memcheck --num-callers=50 --leak-check=full --track-origins=yes --log-file=unity-valgrind.`date +%Y%m%dT%H%M%S`.txt compiz --replace 2>&1 | tee /home/leecj2/unity-valgrind.`date +%Y%m%dT%H%M%S`.log'
