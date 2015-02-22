@@ -5,9 +5,16 @@ export QUILT_PATCHES=debian/patches
 export PBUILDER_SRC_DIR_FORMAT=pkg
 
 alias lsl="ls -larth"
+# Heh, dumb
+alias meow=cat
+
+alias sr=sensors
 
 alias ag=ack-grep
 alias gr='grep -rn'
+
+alias cda='cd /home/leecj2/code/autopilot/'
+alias cdat='cd /home/leecj2/code/autopilot/trunk'
 
 # Bzr abbrevs.
 alias bbranch='bzr branch'
